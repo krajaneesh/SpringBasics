@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!-- autowiring through xml config -->
+
+	<!-- for this bean to be autowired byName, this bean name should exactly match the property name in AutomobileInventoryServiceImpl-->
+	<!-- <bean name="repo"  class="com.fullstackace.java.repo.TexasAutomobileRepo" /> -->
+	
+	<!-- for this bean to be autoWired byType or constructor, the bean name need not match the property name, but there should not be any other bean of the same type (AutomobileRepo) refined in Spring context -->
+	<bean name="autoRepo"  class="com.fullstackace.java.repo.TexasAutomobileRepo" scope="prototype"/><!-- default scope is singleton - i.e. one object per Spring container. prototype = new object for each injection -->
+	
+	
+	<!-- Setter injection in works ! -->
+	<!-- <bean name="autoInventorySrvc" class="com.fullstackace.java.service.AutomobileInventoryServiceImpl" autowire="byName"/> -->
+	
+	<!-- Setter injection in works ! -->
+	<!-- <bean name="autoInventorySrvc" class="com.fullstackace.java.service.AutomobileInventoryServiceImpl" autowire="byType"/> -->
+		
+	<!-- Constructor injection in works ! -->
+	<bean name="autoInventorySrvc" class="com.fullstackace.java.service.AutomobileInventoryServiceImpl" autowire="constructor"/>
+	
+</beans>

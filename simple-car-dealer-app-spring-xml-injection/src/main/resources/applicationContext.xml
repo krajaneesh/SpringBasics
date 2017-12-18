@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean name="texasAutoRepo"  class="com.fullstackace.java.repo.TexasAutomobileRepo" />
+	
+	<!-- Setter injection in works ! -->
+	<!--<bean name="autoInventorySrvc" class="com.fullstackace.java.service.AutomobileInventoryServiceImpl">
+		<property name="repo"  ref="texasAutoRepo"/>
+	</bean> -->
+	
+	<!-- id can be used instead of name attribute for Spring beans. Id is xml way of doing it but certain invalid xml chars cannot be used. Name is better.  -->
+	<bean name="autoInventorySrvc" class="com.fullstackace.java.service.AutomobileInventoryServiceImpl">
+		<constructor-arg index="0" ref="texasAutoRepo"/>
+	</bean>
+	
+
+</beans>

@@ -1,0 +1,2 @@
+#remove from here, put this file in any directory outside of jar and give path is property-placeholder location
+repoUsername=myusername

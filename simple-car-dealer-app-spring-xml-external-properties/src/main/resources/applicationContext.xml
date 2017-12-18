@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+	<context:property-placeholder location="file:///C:/Dev/Workspace/Spring/Fundamentals/external-props/app.props"/>
+
+	<bean name="texasAutoRepo"  class="com.fullstackace.java.repo.TexasAutomobileRepo" scope="prototype"><!-- default scope is singleton -->
+		<property name="userName" value="${repoUsername}"></property>
+	</bean>
+	<!-- Setter injection in works ! -->
+	<!--<bean name="autoInventorySrvc" class="com.fullstackace.java.service.AutomobileInventoryServiceImpl">
+		<property name="repo"  ref="texasAutoRepo"/>
+	</bean> -->
+	
+	<!-- id can be used instead of name attribute for Spring beans. Id is xml way of doing it but certain invalid xml chars cannot be used. Name is better.  -->
+	<bean name="autoInventorySrvc" class="com.fullstackace.java.service.AutomobileInventoryServiceImpl">
+		<constructor-arg index="0" ref="texasAutoRepo"/>
+	</bean>
+	
+
+</beans>
